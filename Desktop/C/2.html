@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            .main-wrapper {
+                width: 300px;
+                height: 1000px;
+            }
+            .title {
+                background-color: gray;
+                width: 300px;
+                height: 50px;
+                color: white;
+                display: flex;
+                align-items: center;
+            }
+            .title p {
+                margin-left: 30px;
+            }
+            .sub_title {
+                width: 300px;
+                height: 50px;
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .text_in {
+                width: 290px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .select_st {
+                width: 297px;
+                height: 37px;
+            }
+            .submit_div{
+                width: 300px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .submit_btn {
+                width: 80px;
+                height: 30px;
+                background-color: gray;
+                color: white;
+                border: none;
+                margin-right: 5px;
+            }
+            .reset_btn {
+                width: 80px;
+                height: 30px;
+                background-color: gray;
+                color: white;
+                border: none;
+                margin-left: 5px;
+            }
+            .newcard {
+                width: 300px;
+                height: 350px;
+                border: 3px black solid;
+                border-radius: 20px;
+                border-radius: 30px;
+            }
+            .cardtitle {
+                width: 100%;
+                height: 8%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.2rem;
+            }
+            .box {
+                width: 100%;
+                height: 13%;
+                margin-top: 5px;
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .cardl {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: gray;
+            }
+
+            .cardr {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: black;
+            }
+            .newcard:hover {
+                width: 450px;
+                height: 450px;
+                transition: all 0.5s ease-in-out;
+                align-items: center;
+                justify-content: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div class="title">
+                <p>학생증 만들기</p>
+            </div>
+            <form>
+                <div class="sub_title">이름</div>
+                <input class="text_in" id = "name" type="text" name="name" placeholder="이름 입력"> 
+                <div class="sub_title">학번</div>
+                <input class="text_in" id="stdnum" type="text" name="stdnum" placeholder="학번 입력"> 
+                <div class="sub_title">학년</div>
+                <input list="cnt" class="text_in" id="num" type="text" name="num" placeholder="학년 입력"/> 
+                    <datalist id="cnt">
+                        <option value="1학년"></option>
+                        <option value="2학년"></option>
+                        <option value="3학년"></option>
+                        <option value="4학년"></option>
+                    </datalist>
+                    
+                <div class="sub_title">상태</div>
+                <select name="st" class="select_st" id="st">
+                    <option selected>재학</option>
+                    <option>휴학</option>
+                    <option>수료</option>
+                    <option>졸업</option>
+                    <option>제적</option>
+                </select>
+                <div class="sub_title">생년월일</div>
+                <input class="text_in" type="date" name="birth" id="birth"> 
+                <div class="sub_title">소속 학과</div>
+                <input class="text_in" id="edu" type="text" name="edu" placeholder="학과 입력"> 
+                <div class="submit_div">
+                    <input type="button" value="학생증 출력" class="submit_btn" id="submit_btn">
+                    <input type="reset" value="초기화" class="reset_btn" id="reset_btn">
+                </div>
+            </form>
+
+            <div id="cardhere">
+            </div>
+        </div>
+    </body>
+    <script>
+        var submit_btn = document.getElementById("submit_btn");
+        var del_btn = document.getElementById("reset_btn");
+        var here = document.getElementById("cardhere");
+        function makecard() {
+            var name = document.getElementById("name").value;
+            var stdnumber = document.getElementById("stdnum").value;
+            var num = document.getElementById("num").value;
+            var st = document.getElementById("st").value;
+            var birth = document.getElementById("birth").value;
+            var edu = document.getElementById("edu").value;
+            if(name === "" || stdnumber === "" || num === "" || st === "" || birth === "" || edu === "") {
+                alert("빈칸이 존재합니다.");
+            }
+            else {
+                const newdiv = document.createElement("div");
+                newdiv.classList.add("newcard");
+                const newdivtitle = document.createElement("div");
+                const titletxt = document.createTextNode("학생증");
+                newdivtitle.classList.add("cardtitle");
+                newdivtitle.appendChild(titletxt);
+                
+                const namewrap = document.createElement("div");
+                namewrap.classList.add("box");
+                const divnamel = document.createElement("div");
+                divnamel.classList.add("cardl");
+                var titlel = document.createTextNode("이름");
+                divnamel.appendChild(titlel);
+                const divnamer = document.createElement("div");
+                divnamer.classList.add("cardr");
+                const nametxt = document.createTextNode(name);
+                divnamer.appendChild(nametxt);
+                namewrap.appendChild(divnamel);
+                namewrap.appendChild(divnamer);
+
+                const stdnum = document.createElement("div");
+                stdnum.classList.add("box");
+                const divstdnuml = document.createElement("div");
+                divstdnuml.classList.add("cardl");
+                var titlel = document.createTextNode("학번");
+                divstdnuml.appendChild(titlel);
+                const divstdnumr = document.createElement("div");
+                divstdnumr.classList.add("cardr");
+                const stdnumtxt = document.createTextNode(stdnumber);
+                divstdnumr.appendChild(stdnumtxt);
+                stdnum.appendChild(divstdnuml);
+                stdnum.appendChild(divstdnumr);
+                
+
+                const number = document.createElement("div");
+                number.classList.add("box");
+                const divnumberl = document.createElement("div");
+                divnumberl.classList.add("cardl");
+                var titlel = document.createTextNode("학년");
+                divnumberl.appendChild(titlel);
+                const divnumberr = document.createElement("div");
+                divnumberr.classList.add("cardr");
+                const numbertxt = document.createTextNode(num);
+                divnumberr.appendChild(numbertxt);
+                number.appendChild(divnumberl);
+                number.appendChild(divnumberr);
+
+                const state = document.createElement("div");
+                state.classList.add("box");
+                const divstatel = document.createElement("div");
+                divstatel.classList.add("cardl");
+                var titlel = document.createTextNode("학년");
+                divstatel.appendChild(titlel);
+                const divstater = document.createElement("div");
+                divstater.classList.add("cardr");
+                const statetxt = document.createTextNode(st);
+                divstater.appendChild(statetxt);
+                state.appendChild(divstatel);
+                state.appendChild(divstater);
+
+                const bir = document.createElement("div");
+                bir.classList.add("box");
+                const divbirl = document.createElement("div");
+                divbirl.classList.add("cardl");
+                var titlel = document.createTextNode("학년");
+                divbirl.appendChild(titlel);
+                const divbirr = document.createElement("div");
+                divbirr.classList.add("cardr");
+                const birtxt = document.createTextNode(birth);
+                divbirr.appendChild(birtxt);
+                bir.appendChild(divbirl);
+                bir.appendChild(divbirr);
+
+                const home = document.createElement("div");
+                home.classList.add("box");
+                const divhomel = document.createElement("div");
+                divhomel.classList.add("cardl");
+                var titlel = document.createTextNode("학년");
+                divhomel.appendChild(titlel);
+                const divhomer = document.createElement("div");
+                divhomer.classList.add("cardr");
+                const hometxt = document.createTextNode(edu);
+                divhomer.appendChild(hometxt);
+                home.appendChild(divhomel);
+                home.appendChild(divhomer);
+                
+
+                newdiv.appendChild(newdivtitle);
+                newdiv.appendChild(namewrap);
+                newdiv.appendChild(stdnum);
+                newdiv.appendChild(number);
+                newdiv.appendChild(state);
+                newdiv.appendChild(bir);
+                newdiv.appendChild(home);
+
+                
+                here.appendChild(newdiv);
+            }
+        }
+
+        function delcard() {
+            while(here.hasChildNodes()) {
+                here.removeChild(here.firstChild);
+            }
+        }
+
+        submit_btn.addEventListener("click", makecard);
+        del_btn.addEventListener("click", delcard);
+    </script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Scoping Example</title>
+    <style type="text/css">
+        p {margin: 0px;}
+    </style>
+    <script>
+        var output = "";
+        function calculate() {
+            for(var i=1; i<=10; i++) {
+                output += "<p>" + i + "! = " + factorial(i) + "</p>";
+                document.getElementById("results").innerHTML = output;
+            }
+        }
+        function factorial(number) {
+            if(number <= 1) return 1;
+            else return number * factorial(number-1);
+        }
+        window.addEventListener("load", calculate, false);
+    </script>
+</head>
+<body>
+    <h1>Factorial of 0 to 10</h1>
+    <div id="results"></div>
+</body>
+</html>

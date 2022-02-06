@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            .main-wrapper {
+                display: block;
+            }
+            .button-wrapper {
+                display: flex;
+            }
+            .link {
+                width: 150px;
+                height: 150px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                float: left;
+                border: 1px black solid;
+                margin-right: 5px;
+                margin-top: 5px;
+                font-size: 1.5rem;
+            }
+            .link a {
+                text-decoration: none;
+                color: black;
+
+            }
+            .link:nth-child(odd) {
+                clear: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div>즐겨찾기 제목: <input type="text" id="title"></div>
+            <div>즐겨찾기 링크: <input type="text" id="src"></div>
+            <div class="button-wrapper">
+                <input id="add" type="button" value="즐겨찾기 추가">
+                <input id="del" type="button" value="즐겨찾기 삭제">
+                <input id="clear" type="button" value="모두 삭제">
+            </div>
+        </div>
+        <div id="list">
+        </div>
+    </body>
+    <script>
+        var addbtn = document.getElementById('add');
+        var delbtn = document.getElementById('del');
+        var clear = document.getElementById('clear');
+        var divli = document.getElementById('list');
+        var titleli = [];
+        function GetInput() {
+            var flag = false;
+            var title = document.getElementById('title').value;
+            var src = document.getElementById('src').value;
+            if(title === "") {
+                alert("title을 입력해야합니다.");
+            }
+            if(src === "") {
+                alert("src를 입력해야합니다.");
+            }
+            if(title !== "" && src !== "") {
+                for(var i=0; i<titleli.length; i++) {
+                    if(titleli[i] === title) flag = true;
+                }
+                if(flag) {
+                    alert("이미 존재하는 Title입니다.");
+                }
+                else {
+                    const newDiv = document.createElement("div");
+                    newDiv.classList.add("link");
+                    newDiv.classList.add(title);
+                    const newText = document.createTextNode(title);
+                    const newLink = document.createElement("a");
+                    newLink.href = "https://" + src;
+                    newLink.appendChild(newText);
+                    newDiv.appendChild(newLink);
+                    divli.appendChild(newDiv);
+                    titleli.push(title);   
+                }
+            }
+        }
+
+        function rmvChild() {
+            var title = document.getElementById('title').value;
+            var rm = document.getElementsByClassName(title);
+            divli.removeChild(rm[0]);
+            var idx = titleli.indexOf(title);
+            if(idx > -1) titleli.splice(idx, 1);
+        }
+
+        function Clear() {
+            while(divli.hasChildNodes()) {
+                divli.removeChild(divli.firstChild);
+            }
+        }
+
+        addbtn.addEventListener("click", GetInput);
+        clear.addEventListener("click", Clear);
+        delbtn.addEventListener("click", rmvChild);
+    </script>
+</html>

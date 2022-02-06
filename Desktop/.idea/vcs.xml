@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/Nyworld/Nyworld" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nyworld/test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nyworld/test2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Refri_Bank" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/home/study/springboot" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/home/study/third" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/login" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/netflix" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/nodejsprac" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/react-app" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/refrigerator/please-refrigerator" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/unix" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/unix/git-practice" vcs="Git" />
+  </component>
+</project>
